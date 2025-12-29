@@ -1,0 +1,57 @@
+:root{
+  --bg:#070707;
+  --panel:#0f0f0f;
+  --muted:#9b9b9b;
+  --accent:#00e5ff; /* neon cyan */
+  --accent-2:#39ff14; /* neon green */
+  --glass: rgba(255,255,255,0.03);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; background:linear-gradient(180deg,var(--bg),#050505);color:#eee}
+.container{max-width:1100px;margin:0 auto;padding:28px}
+.site-header{border-bottom:1px solid rgba(255,255,255,0.03);padding-bottom:20px;margin-bottom:20px}
+.site-title{font-weight:800;letter-spacing:1px;margin:0;font-size:38px}
+.site-title .accent{color:var(--accent);text-shadow:0 0 18px rgba(0,229,255,0.12)}
+.tagline{color:var(--muted);margin-top:6px}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border-radius:12px;padding:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.6);position:relative;transition:transform .32s cubic-bezier(.2,.9,.2,1),box-shadow .32s}
+.card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 18px 40px rgba(0,0,0,0.75)}
+.card-media{height:120px;border-radius:10px;overflow:hidden;background:linear-gradient(135deg,#0b0b0b,#131313);display:flex;align-items:center;justify-content:center;margin-bottom:12px;position:relative}
+/* product images */
+.card-media img.card-img{width:100%;height:100%;object-fit:cover;display:block}
+
+.modal-image{width:100%;height:200px;border-radius:10px;overflow:hidden;margin-bottom:14px;background:linear-gradient(135deg,#060606,#0f0f0f);display:flex;align-items:center;justify-content:center}
+.modal-image img{width:100%;height:100%;object-fit:cover;display:block}
+.placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.icon{width:64px;height:64px;opacity:0.9}
+.card-title{margin:0;font-size:18px}
+.card-price{color:var(--accent);font-weight:700;margin:6px 0}
+.card-desc{color:var(--muted);font-size:13px;margin:0}
+.card-actions{display:flex;gap:8px;align-items:center;margin-top:12px}
+.btn{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#eee;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600;transition:all .18s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,0.6)}
+.btn.buy{border-color:var(--accent-2);color:var(--accent-2);background:linear-gradient(180deg, rgba(57,255,20,0.03), transparent)}
+.btn.details{border-color:rgba(255,255,255,0.06)}
+.btn.mute{border-color:rgba(255,255,255,0.04);color:var(--muted)}
+/* thin neon outline on hover */
+.card:hover .card-media::after{content:'';position:absolute;inset:0;border-radius:10px;box-shadow:0 0 40px 8px rgba(0,229,255,0.03);pointer-events:none}
+/* Modal */
+.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:60;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal[aria-hidden="false"]{opacity:1;pointer-events:auto}
+.modal-backdrop{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.8));backdrop-filter:blur(6px)}
+.modal-panel{position:relative;z-index:80;max-width:720px;width:94%;margin:20px;background:linear-gradient(180deg,#0b0b0b,#121212);border-radius:14px;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,0.8);transform:translateY(16px);opacity:0;transition:transform .28s,opacity .28s}
+.modal[aria-hidden="false"] .modal-panel{transform:translateY(0);opacity:1}
+.modal-close{position:absolute;top:12px;right:12px;background:transparent;border:none;color:var(--muted);font-size:18px;cursor:pointer}
+.modal-title{margin:0 0 6px 0;font-size:22px}
+.modal-price{color:var(--accent);font-weight:700;margin:0}
+.modal-desc{color:var(--muted);margin-top:8px}
+.modal-details{margin-top:12px;color:#ddd}
+.modal-actions{display:flex;gap:12px;margin-top:14px}
+.site-footer{border-top:1px solid rgba(255,255,255,0.03);padding:18px 0;margin-top:40px;color:var(--muted)}
+/* subtle entrance animation */
+@keyframes floatIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card{animation:floatIn .5s ease both}
+/* responsive tweaks */
+@media (max-width:600px){.site-title{font-size:28px}.card-media{height:90px}}
+/* accessibility focus */
+.btn:focus,.modal-close:focus{outline:2px solid rgba(0,229,255,0.12);outline-offset:2px}
